@@ -24,6 +24,7 @@ public class GameplayManager : MonoBehaviour
     
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         //GameManager.Instance.RegisterGameplayManager(this);
         //m_PlayerSpawner.Initialize(ref OnPlayerSpawn);
     }
