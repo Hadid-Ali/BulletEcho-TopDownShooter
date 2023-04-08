@@ -4676,7 +4676,7 @@ Transform:
   - {fileID: 8093990033646938630}
   - {fileID: 5995453345969911543}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &8899660232987698083
 CharacterController:
@@ -4836,7 +4836,7 @@ MonoBehaviour:
   m_CurrentPrimaryWeapon: {fileID: 1254961179331871822}
   m_AimingComponent: {fileID: 2001248265224617990}
   m_AnimatorController: {fileID: 3499707156053086754}
-  m_MaximumShootingAngle: 26
+  m_MaximumShootingAngle: 15
 --- !u!114 &8254700580820543045
 MonoBehaviour:
   m_ObjectHideFlags: 0

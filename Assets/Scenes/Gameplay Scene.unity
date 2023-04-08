@@ -26114,7 +26114,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5101983587888450789, guid: b348c03d959aea847911b49d04934cf5, type: 3}
       propertyPath: m_MaximumShootingAngle
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8127345280083736851, guid: b348c03d959aea847911b49d04934cf5, type: 3}
       propertyPath: m_RootOrder
