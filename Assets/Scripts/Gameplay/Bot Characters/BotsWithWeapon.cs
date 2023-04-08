@@ -20,7 +20,7 @@ public class BotsWithWeapon : NavigationAgent
    public override void AttackState()
    {
       base.AttackState();
-      m_AnimatorController.ShootWeapon(m_EnemyWeapon.Fire);
+      SetFiringEnabled(true);
    }
 
    private void ApplyDamageWithWeapon(float damage)
@@ -43,6 +43,18 @@ public class BotsWithWeapon : NavigationAgent
    protected override void OnSwitchToChase()
    {
       base.OnSwitchToChase();
-      m_AnimatorController.SetAimPose(false);
+      SetFiringEnabled(false);
+   }
+
+   protected override void OnSwitchToDie()
+   {
+      SetFiringEnabled(false);
+      base.OnSwitchToDie();
+   }
+
+   private void SetFiringEnabled(bool enable)
+   {
+      m_AnimatorController.SetAimPose(enable);
+      m_EnemyWeapon.SetFiringEnabled(enable);
    }
 }

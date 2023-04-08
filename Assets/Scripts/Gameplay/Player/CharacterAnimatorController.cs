@@ -16,7 +16,7 @@ public abstract class CharacterAnimatorController : MonoBehaviour
     private readonly int m_ShootWeaponParameter = Animator.StringToHash("Shoot");
     
         private readonly int m_DeadParameter = Animator.StringToHash("Dead");
-    private readonly int m_DieParameter = Animator.StringToHash("Die");
+    private readonly int m_DieParameter = Animator.StringToHash("Dead");
     private readonly int m_DamageParameter = Animator.StringToHash("GetDamage");
 
     private Action m_OnShootingPoseAction;

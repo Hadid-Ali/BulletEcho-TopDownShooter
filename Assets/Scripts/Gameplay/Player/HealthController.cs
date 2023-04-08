@@ -1,11 +1,14 @@
 using System;
+using UnityAtoms;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class HealthController : MonoBehaviour
 {
     [SerializeField] private float m_Health = 100;
-
+    [SerializeField] private FloatPairEvent m_HealthUpdateEvent;
+    
     private float m_CurrentHealth;
     
     protected Action m_HealthDeminished;
@@ -33,11 +36,16 @@ public class HealthController : MonoBehaviour
 
     public virtual void ApplyDamage(float damage)
     {
+        Debug.LogError($"Apply Damage On {gameObject}");
         m_CurrentHealth -= damage;
 
         m_HealthUpdate?.Invoke(m_CurrentHealth / m_Health);
         m_DamagedApplied?.Invoke();
-        
+        m_HealthUpdateEvent?.Raise(new FloatPair()
+        {
+             Item1 = m_CurrentHealth,
+             Item2 = m_Health
+        });
         if (m_CurrentHealth > 0)
             return;
 
