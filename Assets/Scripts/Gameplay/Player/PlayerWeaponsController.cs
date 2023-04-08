@@ -46,6 +46,8 @@ public class PlayerWeaponsController : MonoBehaviour
    {
       m_CurrentAimObject = aimObject;
       m_HasTarget = aimObject != null;
+      
+      SetAimingEnabled(m_HasTarget);
    }
 
    private void FiringMechanism()
@@ -59,13 +61,16 @@ public class PlayerWeaponsController : MonoBehaviour
          float angle = Vector3.Angle(aimDirection, direction);
          canFire = angle <= m_MaximumShootingAngle;
       }
-
       SetFiringEnabled(canFire);
    }
    
    private void SetFiringEnabled(bool enable)
    {
-      m_AnimatorController.SetAimPose(enable);
       m_CurrentPrimaryWeapon.SetFiringEnabled(enable);
+   }
+
+   private void SetAimingEnabled(bool enable)
+   {
+      m_AnimatorController.SetAimPose(enable);
    }
 }
