@@ -3067,7 +3067,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 28.08}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.44}
+  m_AnchoredPosition: {x: 0.1, y: 0.44}
   m_SizeDelta: {x: 14.2963, y: 14.3478}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3556800858508619533
@@ -4836,6 +4836,7 @@ MonoBehaviour:
   m_CurrentPrimaryWeapon: {fileID: 1254961179331871822}
   m_AimingComponent: {fileID: 2001248265224617990}
   m_AnimatorController: {fileID: 3499707156053086754}
+  m_MaximumShootingAngle: 26
 --- !u!114 &8254700580820543045
 MonoBehaviour:
   m_ObjectHideFlags: 0
