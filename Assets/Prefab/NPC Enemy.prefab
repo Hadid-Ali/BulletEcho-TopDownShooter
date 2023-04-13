@@ -5080,7 +5080,7 @@ GameObject:
   - component: {fileID: 1345959942451320424}
   - component: {fileID: 3769563160264961884}
   m_Layer: 6
-  m_Name: Alien Character
+  m_Name: NPC Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
