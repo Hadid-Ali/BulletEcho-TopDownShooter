@@ -832,7 +832,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: STARTER_ASSETS_PACKAGES_CHECKED;CF_FORCE_MOBILE_MODE
+    Android: STARTER_ASSETS_PACKAGES_CHECKED;CF_FORCE_MOBILE_MODE;VLB_URP
     Standalone: STARTER_ASSETS_PACKAGES_CHECKED
     Windows Store Apps: CF_FORCE_MOBILE_MODE
     iPhone: CF_FORCE_MOBILE_MODE
