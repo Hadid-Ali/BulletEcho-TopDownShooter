@@ -27,9 +27,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.6755054, y: 1.36, z: 9.846419}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114203145347076198
 MonoBehaviour:
@@ -43,14 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7213e77112ddac94d95da3599feeab23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   vision_angle: 30
   vision_range: 3
   vision_near_range: 3
   obstacle_mask:
     serializedVersion: 2
-    m_Bits: 256
-  show_two_levels: 1
+    m_Bits: 1
+  show_two_levels: 0
   cone_material: {fileID: 2100000, guid: 110a4a0af7721044faab94478d5ab05c, type: 2}
   cone_far_material: {fileID: 2100000, guid: a45021f2647208144bce8fe9c98f25db, type: 2}
   sort_order: 1
