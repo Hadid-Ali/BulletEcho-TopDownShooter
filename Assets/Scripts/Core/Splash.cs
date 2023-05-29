@@ -6,6 +6,6 @@ public class Splash : MonoBehaviour
     
     void Start()
     {
-        SceneManager.LoadScene("Gameplay Scene");
+        SceneManager.LoadScene("Mainmenu");
     }
 }
