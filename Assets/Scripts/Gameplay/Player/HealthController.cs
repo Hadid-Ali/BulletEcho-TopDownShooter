@@ -8,12 +8,14 @@ public class HealthController : MonoBehaviour
 {
     [SerializeField] private float m_Health = 100;
     [SerializeField] private FloatPairEvent m_HealthUpdateEvent;
-    
+
     private float m_CurrentHealth;
     
     protected Action m_HealthDeminished;
     protected Action m_DamagedApplied;
     protected Action<float> m_HealthUpdate;
+
+    public bool IsAlive => m_CurrentHealth > 0;
 
     protected virtual void OnEnable()
     {
@@ -43,10 +45,11 @@ public class HealthController : MonoBehaviour
         m_DamagedApplied?.Invoke();
         m_HealthUpdateEvent?.Raise(new FloatPair()
         {
-             Item1 = m_CurrentHealth,
-             Item2 = m_Health
+            Item1 = m_CurrentHealth,
+            Item2 = m_Health
         });
-        if (m_CurrentHealth > 0)
+        
+        if (IsAlive)
             return;
 
         OnHealthDiminish();
