@@ -1,4 +1,5 @@
 using System;
+using IndieMarc.EnemyVision;
 using UnityEngine;
 
 public class PlayerWeaponsController : MonoBehaviour
@@ -8,6 +9,7 @@ public class PlayerWeaponsController : MonoBehaviour
    [SerializeField] private SimpleWeapon m_CurrentPrimaryWeapon;
    [SerializeField] private WeaponAimingComponent m_AimingComponent;
    [SerializeField] private PlayerAnimatorController m_AnimatorController;
+   [SerializeField] private VisionCone m_AimingCone;
 
    [Header("Values")]
    [SerializeField] private float m_MaximumShootingAngle = 26f;
@@ -22,6 +24,7 @@ public class PlayerWeaponsController : MonoBehaviour
    private void Start()
    {
       m_Transform = transform;
+      SetAimingAngle(m_MaximumShootingAngle);
    }
 
    private void OnEnable()
@@ -35,12 +38,17 @@ public class PlayerWeaponsController : MonoBehaviour
       FiringMechanism();
    }
 
+   private void SetAimingAngle(float value)
+   {
+       m_MaximumShootingAngle = value;
+       m_AimingCone.vision_angle = value * 2;
+   }
+
    private void TryWeaponDamage(float damage)
    {
       if (m_CurrentAimObject is null)
          return;
 
-      Debug.LogError($"Try Weapon Damage {damage}");
       m_CurrentTargetHealthController.ApplyDamage(damage);
    }
 
@@ -70,11 +78,19 @@ public class PlayerWeaponsController : MonoBehaviour
 
          float angle = Vector3.Angle(aimDirection, direction);
          canFire = angle <= m_MaximumShootingAngle;
+         
+         Debug.LogError(angle);
       }
 
       if (canFire && m_CurrentTargetHealthController != null)
       {
-         canFire = m_CurrentTargetHealthController.IsAlive;
+         bool isTargetAlive = m_CurrentTargetHealthController.IsAlive;
+         canFire = isTargetAlive;
+
+         if (!isTargetAlive)
+         {
+            SetAimObject(null);
+         }
       }
 
       SetFiringEnabled(canFire);
