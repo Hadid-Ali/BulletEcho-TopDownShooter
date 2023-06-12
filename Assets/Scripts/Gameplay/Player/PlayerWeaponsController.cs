@@ -79,7 +79,7 @@ public class PlayerWeaponsController : MonoBehaviour
          float angle = Vector3.Angle(aimDirection, direction);
          canFire = angle <= m_MaximumShootingAngle;
          
-         Debug.LogError(angle);
+//         Debug.LogError(angle);
       }
 
       if (canFire && m_CurrentTargetHealthController != null)

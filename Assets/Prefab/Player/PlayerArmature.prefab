@@ -4109,7 +4109,7 @@ GameObject:
   - component: {fileID: 1391531357763505181}
   - component: {fileID: 4708693796965138709}
   m_Layer: 2
-  m_Name: Aiming Range
+  m_Name: ' Player Range'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5108,8 +5108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53297603ad0f4ed47821d02b93913c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PlayerRange: {fileID: 2172169277823959691}
   m_PlayerController: {fileID: 1647909149586068083}
-  m_AimingRange: {fileID: 2172169277823959691}
 --- !u!136 &1878228009275903946
 CapsuleCollider:
   m_ObjectHideFlags: 0

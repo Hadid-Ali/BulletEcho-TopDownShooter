@@ -1,12 +1,11 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
-public class WeaponAimingComponent : MonoBehaviour
+public class WeaponAimingComponent : PlayerRangeHandler
 {
     [SerializeField] private PlayerController m_PlayerController;
-    [SerializeField] private AimingRange m_AimingRange;
-
     private List<AimObject> m_AimObjects = new();
 
     private AimObject m_CurrentAimObject;
@@ -20,34 +19,33 @@ public class WeaponAimingComponent : MonoBehaviour
     {
         m_PlayerController = GetComponent<PlayerController>();
     }
-
-    private void OnEnable()
-    {
-        m_AimingRange.Initialize(AddAimObject, RemoveAimObject);
-    }
-
+    
     public void Initialize(Action<AimObject> OnTargetsStatusUpdated)
     {
         m_TargetsStatusUpdated += OnTargetsStatusUpdated;
     }
-
-    private void AddAimObject(AimObject aimObject)
+    
+    private void SetAimTarget()
     {
-        if (m_AimObjects.Contains(aimObject))
+        m_TargetsStatusUpdated?.Invoke(m_AimObjects.Count > 0 ? m_AimObjects[0] : null);
+    }
+
+    protected override void OnObjectEnterRange(GameObject rangeObject)
+    {
+        if (!rangeObject.TryGetComponent(out AimObject aimObject) || !aimObject.IsAimable ||
+            m_AimObjects.Contains(aimObject))
             return;
-        
+
         m_AimObjects.Add(aimObject);
         SetAimTarget();
     }
 
-    private void RemoveAimObject(AimObject aimObject)
+    protected override void OnObjectLeaveRange(GameObject rangeObject)
     {
+        if (!rangeObject.TryGetComponent(out AimObject aimObject)) 
+            return;
+        
         m_AimObjects.Remove(aimObject);
         SetAimTarget();
-    }
-
-    private void SetAimTarget()
-    {
-        m_TargetsStatusUpdated?.Invoke(m_AimObjects.Count > 0 ? m_AimObjects[0] : null);
     }
 }
