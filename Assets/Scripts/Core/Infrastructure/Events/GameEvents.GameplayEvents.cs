@@ -7,8 +7,8 @@ public static partial class GameEvents
 {
     public static class GameplayEvents
     {
-        public static GameEvent<Action> EnterObjectRange = new();
-        public static GameEvent ExitObjectRange = new();
+        public static GameEvent<Action> WaitForAction = new();
+        public static GameEvent CancelWaitForAction = new();
 
     }
 }

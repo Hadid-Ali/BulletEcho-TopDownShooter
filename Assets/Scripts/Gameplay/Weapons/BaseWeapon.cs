@@ -74,6 +74,7 @@ namespace Gameplay.Weapons
             if (m_CurrentAmmoCount <= 0)
             {
                 m_CurrentCoolDownRemainingTime = m_WeaponCoolDownDuration;
+                StartCoroutine(WeaponCoolDownRoutine());
             }
         }
 
