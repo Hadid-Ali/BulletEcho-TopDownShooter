@@ -10,5 +10,8 @@ public static partial class GameEvents
         public static GameEvent<Action> WaitForAction = new();
         public static GameEvent CancelWaitForAction = new();
 
+        public static GameEvent<float> RestoreHealth = new();
+        public static GameEvent<float> GainShield = new();
+
     }
 }

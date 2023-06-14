@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthPickup : Collectable
@@ -8,5 +6,9 @@ public class HealthPickup : Collectable
     {
         Debug.LogError("Health Pickup");
         gameObject.SetActive(false);
+
+        GameEvents.GameplayEvents.RestoreHealth.Raise(50);
     }
+
+    
 }

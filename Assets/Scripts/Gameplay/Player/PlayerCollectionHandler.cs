@@ -8,15 +8,16 @@ public class PlayerCollectionHandler : PlayerRangeHandler
     
     protected override void OnObjectEnterRange(GameObject rangeObject)
     {
-        if (!rangeObject.TryGetComponent(out m_Collectable))
+        if (!rangeObject.TryGetComponent(out Collectable collectable))
             return;
-        
+
+        m_Collectable = collectable;
         GameEvents.GameplayEvents.WaitForAction.Raise(CollectCurrentObject);
     }
 
     protected override void OnObjectLeaveRange(GameObject rangeObject)
     {
-        if (!rangeObject.TryGetComponent(out m_Collectable))
+        if (!rangeObject.TryGetComponent(out Collectable collectable))
             return;
         
         GameEvents.GameplayEvents.CancelWaitForAction.Raise();
@@ -25,5 +26,6 @@ public class PlayerCollectionHandler : PlayerRangeHandler
     private void CollectCurrentObject()
     {
         m_Collectable.Collect();
+        m_Collectable = null;
     }
 }

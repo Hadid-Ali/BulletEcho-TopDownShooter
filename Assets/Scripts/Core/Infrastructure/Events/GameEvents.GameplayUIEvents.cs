@@ -1,4 +1,6 @@
 
+using System;
+
 public static partial class GameEvents
 {
     public static class GameplayUIEvents
@@ -7,5 +9,8 @@ public static partial class GameEvents
         public static GameEvent HidePromptEvent = new();
         
         public static GameEvent<bool> InventoryStatusChangedEvent = new();
+
+        public static GameEvent<float, float> UpdateShieldBar = new();
+
     }
 }

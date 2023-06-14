@@ -28,6 +28,11 @@ namespace Gameplay.Weapons
         protected AimObject m_CurrentAimObject;
         private WaitForSeconds m_WeaponCooldownRoutineWait = new WaitForSeconds(1f);
 
+        private void Start()
+        {
+            m_CurrentAmmoCount = m_MagazineSize;
+        }
+
         public void RegisterAimObject(AimObject aimObject)
         {
             m_CurrentAimObject = aimObject;
@@ -71,8 +76,10 @@ namespace Gameplay.Weapons
             m_WeaponSfxHandler.ShootSound();
         
             m_CurrentAmmoCount--;
+            Debug.LogError($"m_WeaponAmmoCount {m_CurrentAmmoCount}");
             if (m_CurrentAmmoCount <= 0)
             {
+                SetFiringEnabled(false);
                 m_CurrentCoolDownRemainingTime = m_WeaponCoolDownDuration;
                 StartCoroutine(WeaponCoolDownRoutine());
             }
@@ -89,6 +96,9 @@ namespace Gameplay.Weapons
             }
 
             m_CurrentAmmoCount = m_MagazineSize;
+            SetFiringEnabled(true);
+            Debug.LogError($"m_WeaponAmmoCount {m_CurrentAmmoCount}");
+
         }
     }
 }
