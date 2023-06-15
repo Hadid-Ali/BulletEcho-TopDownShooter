@@ -12,6 +12,7 @@ public static partial class GameEvents
 
         public static GameEvent<float> RestoreHealth = new();
         public static GameEvent<float> GainShield = new();
+        public static GameEvent<int> CollectBullet = new();
 
     }
 }

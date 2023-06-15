@@ -11,6 +11,7 @@ namespace Gameplay.Weapons
      
         [SerializeField] protected float m_WeaponDamage;
         
+        [SerializeField] protected int m_TotleBullets;
         [SerializeField] protected int m_MagazineSize;
         [SerializeField] protected int m_WeaponCoolDownDuration;   
         

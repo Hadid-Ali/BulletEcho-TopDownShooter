@@ -8,7 +8,8 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Image m_HealthBarImage;
     [SerializeField] private Image m_ShieldBarImage;
     [SerializeField] private FloatPairEvent m_HealthUpdateEvent;
-    
+    [SerializeField] private bool m_IsPlayer;
+
     private void OnEnable()
     {
         m_HealthUpdateEvent.Register(UpdateHealthBar);
@@ -27,7 +28,7 @@ public class HealthBar : MonoBehaviour
     {
         UpdateHealthBar(floatPair.Item1 / floatPair.Item2);
     }
-    
+
     protected virtual void UpdateHealthBar(float value)
     {
         Debug.Log($"Value {value}");
@@ -36,16 +37,13 @@ public class HealthBar : MonoBehaviour
 
     void UpdateShieldBar(float min, float max)
     {
-        SetShieldBar(min / max);
+        if (m_IsPlayer)
+            SetShieldBar(min / max);
     }
 
     void SetShieldBar(float value)
     {
-        if(m_ShieldBarImage != null)
-        {
-            m_ShieldBarImage.fillAmount = value;
-        }
-
+        m_ShieldBarImage.fillAmount = value;
     }
 
     protected virtual void Show()
@@ -53,7 +51,7 @@ public class HealthBar : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    protected virtual  void Hide()
+    protected virtual void Hide()
     {
         gameObject.SetActive(false);
     }
