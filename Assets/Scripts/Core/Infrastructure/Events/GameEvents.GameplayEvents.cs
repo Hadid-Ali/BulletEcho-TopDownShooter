@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Gameplay.Weapons;
 using UnityEngine;
 
 public static partial class GameEvents
@@ -12,7 +13,9 @@ public static partial class GameEvents
 
         public static GameEvent<float> RestoreHealth = new();
         public static GameEvent<float> GainShield = new();
-        public static GameEvent<int> CollectBullet = new();
+        
+        public static GameEvent<WeaponName, int> SpecialWeapon = new();
+        public static GameEvent<SimpleWeapon> EquipWeapon = new();
 
     }
 }

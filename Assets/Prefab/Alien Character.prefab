@@ -1589,6 +1589,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -4108,11 +4109,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836cc901a9fde5f45bcf80f17caff89a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_WeaponName: 0
+  m_WeaponAnimator: {fileID: 0}
   m_WeaponVFXHandler: {fileID: 1620678877960723912}
   m_WeaponSfxHandler: {fileID: 492268942506867192}
   m_WeaponDamage: 25
-  m_MagazineSize: 0
-  m_WeaponCoolDownDuration: 0
+  m_TotleBullets: -1
+  m_MagazineSize: 6
+  m_WeaponCoolDownDuration: 1
   m_WeaponShootingRate: 0.25
 --- !u!114 &1620678877960723912
 MonoBehaviour:
@@ -5103,7 +5107,7 @@ Transform:
   - {fileID: 543450652290376354}
   - {fileID: 7654320633701206299}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &4273134144849875189
 NavMeshAgent:
@@ -5271,6 +5275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Health: 30
+  m_Sheild: 0
   m_HealthUpdateEvent: {fileID: 11400000, guid: 68f4182a1c19cd64abddae440b10ee91, type: 2}
 --- !u!114 &3769563160264961884
 MonoBehaviour:

@@ -1,11 +1,15 @@
 using System;
 using System.Collections;
+using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Gameplay.Weapons
 {
     public abstract class BaseWeapon : MonoBehaviour
-    {     
+    {
+        [SerializeField] protected WeaponName m_WeaponName;
+        [SerializeField] protected AnimatorOverrideController m_WeaponAnimator;
         [SerializeField] protected WeaponVFXHandler m_WeaponVFXHandler;
         [SerializeField] protected WeaponSFXHandler m_WeaponSfxHandler;
      
@@ -14,10 +18,11 @@ namespace Gameplay.Weapons
         [SerializeField] protected int m_TotleBullets;
         [SerializeField] protected int m_MagazineSize;
         [SerializeField] protected int m_WeaponCoolDownDuration;   
-        
+        [SerializeField] protected bool m_IsPlayer = false;
+
         [SerializeField] private float m_WeaponShootingRate = 0.2f;
 
-        private int m_CurrentAmmoCount;
+        protected int m_CurrentAmmoCount = 0;
         private int m_CurrentCoolDownRemainingTime;
     
         private float m_CurrentShotTime;
@@ -31,7 +36,7 @@ namespace Gameplay.Weapons
 
         private void Start()
         {
-            m_CurrentAmmoCount = m_MagazineSize;
+            
         }
 
         public void RegisterAimObject(AimObject aimObject)
@@ -48,12 +53,11 @@ namespace Gameplay.Weapons
         {
             m_WeaponShootingRate = shootingRate;
         }
-        
+
         private void Update()
         {
-            if(!m_Fire)
+            if (!m_Fire)
                 return;
-        
             Fire();
         }
 
@@ -78,28 +82,43 @@ namespace Gameplay.Weapons
         
             m_CurrentAmmoCount--;
             Debug.LogError($"m_WeaponAmmoCount {m_CurrentAmmoCount}");
-            if (m_CurrentAmmoCount <= 0)
+            if (m_CurrentAmmoCount <= 0 && m_IsPlayer)
             {
                 SetFiringEnabled(false);
                 m_CurrentCoolDownRemainingTime = m_WeaponCoolDownDuration;
+                if (m_IsPlayer)
+                {
+                    m_TotleBullets -= m_MagazineSize;
+                }
                 StartCoroutine(WeaponCoolDownRoutine());
             }
         }
 
         private IEnumerator WeaponCoolDownRoutine()
         {
-            while (m_CurrentCoolDownRemainingTime > 0)
-            {
-                OnWeaponRemainingCoolDownUpdate?.Invoke(m_CurrentCoolDownRemainingTime);
-                yield return m_WeaponCooldownRoutineWait;
+            // while (m_CurrentCoolDownRemainingTime > 0)
+            // {
+            //     OnWeaponRemainingCoolDownUpdate?.Invoke(m_CurrentCoolDownRemainingTime);
+            //     yield return m_WeaponCooldownRoutineWait;
+            //
+            //     m_CurrentCoolDownRemainingTime--;
+            // }
 
-                m_CurrentCoolDownRemainingTime--;
-            }
+            yield return new WaitForSeconds(m_WeaponCoolDownDuration);
 
             m_CurrentAmmoCount = m_MagazineSize;
             SetFiringEnabled(true);
             Debug.LogError($"m_WeaponAmmoCount {m_CurrentAmmoCount}");
 
         }
+
+        public void UpdateBullet()
+        {
+            StartCoroutine(WeaponCoolDownRoutine());
+        }
+        public WeaponName WeaponName() => m_WeaponName;
+        
+        public AnimatorOverrideController GetWeaponAnimator() => m_WeaponAnimator;
+
     }
 }

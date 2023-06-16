@@ -29,6 +29,17 @@ public class PlayerWeaponsController : MonoBehaviour
 
    private void OnEnable()
    {
+      InitWeapon();
+      GameEvents.GameplayEvents.EquipWeapon.Register(EquipWeapon);
+   }
+
+   private void OnDisable()
+   {
+      GameEvents.GameplayEvents.EquipWeapon.Unregister(EquipWeapon);
+   }
+
+   void InitWeapon()
+   {
       m_CurrentPrimaryWeapon.Initialize(TryWeaponDamage);
       m_AimingComponent.Initialize(SetAimObject);
    }
@@ -104,5 +115,11 @@ public class PlayerWeaponsController : MonoBehaviour
    private void SetAimingEnabled(bool enable)
    {
       m_AnimatorController.SetAimPose(enable);
+   }
+
+   void EquipWeapon(SimpleWeapon equipweapon)
+   {
+      m_CurrentPrimaryWeapon = equipweapon;
+      InitWeapon();
    }
 }
