@@ -52817,17 +52817,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1809904819}
     m_Modifications:
-    - target: {fileID: 1345959942451320424, guid: 36eedfaf79bd43e43a427824c0e221ce, type: 3}
-      propertyPath: m_Health
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 7414830050577682440, guid: 36eedfaf79bd43e43a427824c0e221ce, type: 3}
       propertyPath: m_Name
       value: Alien Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 7414830050577682440, guid: 36eedfaf79bd43e43a427824c0e221ce, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7902994953618541234, guid: 36eedfaf79bd43e43a427824c0e221ce, type: 3}
       propertyPath: m_RootOrder
@@ -69472,7 +69464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1254961179331871822, guid: b348c03d959aea847911b49d04934cf5, type: 3}
       propertyPath: m_WeaponDamage
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1254961179331871822, guid: b348c03d959aea847911b49d04934cf5, type: 3}
       propertyPath: m_WeaponAnimator
@@ -69480,7 +69472,7 @@ PrefabInstance:
       objectReference: {fileID: 22100000, guid: 459d6b3a659e92c45a516f0fe8ddf432, type: 2}
     - target: {fileID: 1254961179331871822, guid: b348c03d959aea847911b49d04934cf5, type: 3}
       propertyPath: m_WeaponCoolDownDuration
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5101983587888450789, guid: b348c03d959aea847911b49d04934cf5, type: 3}
       propertyPath: m_CurrentPrimaryWeapon

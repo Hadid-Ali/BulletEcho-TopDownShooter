@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Gameplay.Weapons;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class PlayerWeaponsInventory : MonoBehaviour
 {
@@ -23,8 +22,6 @@ public class PlayerWeaponsInventory : MonoBehaviour
     void EquipWeapon(WeaponName WeaponName, int bulletCount)
     {
         int EquipWeaponIndex = ToEquipWeapon(WeaponName);
-        print("YA raha weapon ka index "+EquipWeaponIndex);
-        print("YA raha weapon ka index pehly wala " + GetLastActiveWeapon());
         m_Weapons[GetLastActiveWeapon()].gameObject.SetActive(false);
         m_Weapons[EquipWeaponIndex].gameObject.SetActive(true);
         GameEvents.GameplayEvents.EquipWeapon.Raise((SimpleWeapon)m_Weapons[EquipWeaponIndex]);

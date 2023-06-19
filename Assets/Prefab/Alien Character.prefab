@@ -4109,14 +4109,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836cc901a9fde5f45bcf80f17caff89a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_WeaponName: 0
+  m_WeaponName: 1
   m_WeaponAnimator: {fileID: 0}
   m_WeaponVFXHandler: {fileID: 1620678877960723912}
   m_WeaponSfxHandler: {fileID: 492268942506867192}
-  m_WeaponDamage: 25
+  m_WeaponDamage: 15
   m_TotleBullets: -1
   m_MagazineSize: 6
   m_WeaponCoolDownDuration: 1
+  m_IsPlayer: 0
   m_WeaponShootingRate: 0.25
 --- !u!114 &1620678877960723912
 MonoBehaviour:
@@ -5274,7 +5275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b20d3a064df12946a8e6c092c689924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Health: 30
+  m_Health: 50
   m_Sheild: 0
   m_HealthUpdateEvent: {fileID: 11400000, guid: 68f4182a1c19cd64abddae440b10ee91, type: 2}
 --- !u!114 &3769563160264961884

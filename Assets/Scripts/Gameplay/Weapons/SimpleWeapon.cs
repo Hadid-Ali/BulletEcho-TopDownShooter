@@ -22,9 +22,8 @@ public class SimpleWeapon : BaseWeapon
     
     protected override void FireInternal()
     {
-        if (m_TotleBullets <= 0 && m_WeaponName != global::WeaponName.Pistol)
+        if (m_TotleBullets <= 0 && m_IsPlayer)
         {
-            print("BUllets count"+m_TotleBullets);
             GameEvents.GameplayEvents.SpecialWeapon.Raise(global::WeaponName.Pistol, 0);
         }
 
@@ -38,10 +37,8 @@ public class SimpleWeapon : BaseWeapon
 
     public void IncreaseBullets(int ammoCount)
     {
-        print("Ya a raha ha increase bullets");
         if (m_IsPlayer)
         {
-            print("Ya a raha ha increase bullets player");
             m_TotleBullets += ammoCount;
             UpdateBullet();
         }
