@@ -10,6 +10,6 @@ public class BulletPickup : Collectable
     {
         gameObject.SetActive(false);
         
-        GameEvents.GameplayEvents.SpecialWeapon.Raise(m_WeaponName, m_BulletsCount);
+        GameEvents.GameplayEvents.SwitchWeaponWithBullets.Raise(m_WeaponName, m_BulletsCount);
     }
 }

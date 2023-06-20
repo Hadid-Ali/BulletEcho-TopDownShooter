@@ -8,39 +8,33 @@ using UnityEngine;
 public class SimpleWeapon : BaseWeapon
 {
     private Action<float> m_WeaponTryDamage;
-
+    private Action m_OnWeaponRunOutOfAmmo;
+    
     public void Initialize(Action<float> OnWeaponTryDamage)
     {
         m_WeaponTryDamage = OnWeaponTryDamage;
     }
 
-
     public void OnDisable()
     {
         m_WeaponTryDamage = null;
     }
-    
+
+    protected override void WeaponRunOutOfAmmo()
+    {
+        base.WeaponRunOutOfAmmo();
+        GameEvents.GameplayEvents.SwitchWeaponWithBullets.Raise(WeaponName.Pistol, 0);
+    }
+
     protected override void FireInternal()
     {
-        if (m_TotleBullets <= 0 && m_IsPlayer)
-        {
-            GameEvents.GameplayEvents.SpecialWeapon.Raise(global::WeaponName.Pistol, 0);
-        }
-
-        if (m_IsPlayer && m_CurrentAmmoCount <= 0)
-        {
-            return;
-        }
         base.FireInternal();
         m_WeaponTryDamage?.Invoke(m_WeaponDamage);
     }
 
     public void IncreaseBullets(int ammoCount)
     {
-        if (m_IsPlayer)
-        {
-            m_TotleBullets += ammoCount;
-            UpdateBullet();
-        }
+        m_TotleBullets += ammoCount;
+        UpdateBullet();
     }
 }

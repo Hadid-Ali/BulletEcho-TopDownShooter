@@ -11,22 +11,28 @@ public class PlayerWeaponsInventory : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvents.GameplayEvents.SpecialWeapon.Register(EquipWeapon);
+        GameEvents.GameplayEvents.SwitchWeaponWithBullets.Register(EquipWeapon);
     }
     private void OnDisable()
     {
-        GameEvents.GameplayEvents.SpecialWeapon.UnRegister(EquipWeapon);
+        GameEvents.GameplayEvents.SwitchWeaponWithBullets.UnRegister(EquipWeapon);
     }
-    public int ToEquipWeapon(WeaponName WeaponName) => m_Weapons.FindIndex(v => v.WeaponName() == WeaponName);
+    public int FindIndexOfWeapon(WeaponName WeaponName) => m_Weapons.FindIndex(v => v.WeaponName == WeaponName);
+    
     public int GetLastActiveWeapon() => m_Weapons.FindIndex(v => v.gameObject.activeSelf);
+
     void EquipWeapon(WeaponName WeaponName, int bulletCount)
     {
-        int EquipWeaponIndex = ToEquipWeapon(WeaponName);
+        int EquipWeaponIndex = FindIndexOfWeapon(WeaponName);
+        
         m_Weapons[GetLastActiveWeapon()].gameObject.SetActive(false);
         m_Weapons[EquipWeaponIndex].gameObject.SetActive(true);
+        
         GameEvents.GameplayEvents.EquipWeapon.Raise((SimpleWeapon)m_Weapons[EquipWeaponIndex]);
+        
         SimpleWeapon Weapon = (SimpleWeapon)m_Weapons[EquipWeaponIndex];
         Weapon.IncreaseBullets(bulletCount);
-        m_CraracterAnimatorController.ApplyAnimatorOverrideController(m_Weapons[EquipWeaponIndex].GetWeaponAnimator());
+        
+        m_CraracterAnimatorController.ApplyAnimatorOverrideController(m_Weapons[EquipWeaponIndex].WeaponAnimator);
     }
 }

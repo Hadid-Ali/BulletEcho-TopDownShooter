@@ -4114,11 +4114,11 @@ MonoBehaviour:
   m_WeaponVFXHandler: {fileID: 1620678877960723912}
   m_WeaponSfxHandler: {fileID: 492268942506867192}
   m_WeaponDamage: 15
-  m_TotleBullets: -1
-  m_MagazineSize: 6
-  m_WeaponCoolDownDuration: 1
-  m_IsPlayer: 0
   m_WeaponShootingRate: 0.25
+  m_WeaponCoolDownDuration: 1
+  m_TotleBullets: 100
+  m_MagazineSize: 100
+  m_WeaponReloadMode: 0
 --- !u!114 &1620678877960723912
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,28 +2,38 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 
 namespace Gameplay.Weapons
 {
     public abstract class BaseWeapon : MonoBehaviour
     {
+        [Header("Name")]
+        
         [SerializeField] protected WeaponName m_WeaponName;
-        [SerializeField] protected AnimatorOverrideController m_WeaponAnimator;
+
+        [Header("Components")]
+        
+        [SerializeField]
+        protected AnimatorOverrideController m_WeaponAnimator;
+
         [SerializeField] protected WeaponVFXHandler m_WeaponVFXHandler;
         [SerializeField] protected WeaponSFXHandler m_WeaponSfxHandler;
-     
+
+        [Header("Shooting Properties")]
+        
         [SerializeField] protected float m_WeaponDamage;
+        [SerializeField] private float m_WeaponShootingRate = 0.2f;
+        [SerializeField] protected int m_WeaponCoolDownDuration;
+
+        [Header("Bullet Properties")]
         
         [SerializeField] protected int m_TotleBullets;
         [SerializeField] protected int m_MagazineSize;
-        [SerializeField] protected int m_WeaponCoolDownDuration;   
-        [SerializeField] protected bool m_IsPlayer = false;
-
-        [SerializeField] private float m_WeaponShootingRate = 0.2f;
-
+        [SerializeField] private WeaponReloadMode m_WeaponReloadMode = WeaponReloadMode.UNLIMITED_AMMO;
+        
         protected int m_CurrentAmmoCount = 0;
-        private int m_CurrentCoolDownRemainingTime;
-    
+
         private float m_CurrentShotTime;
         private bool m_Fire = false;
 
@@ -31,11 +41,27 @@ namespace Gameplay.Weapons
         public Action<int> OnWeaponAmmoCountUpdate;
 
         protected AimObject m_CurrentAimObject;
-        private WaitForSeconds m_WeaponCooldownRoutineWait = new WaitForSeconds(1f);
+        private WaitForSeconds m_WeaponCooldownRoutineWait = new(1f);
+        private WaitForEndOfFrame m_FrameDelay = new();
+        
+        public WeaponName WeaponName => m_WeaponName;
+        public AnimatorOverrideController WeaponAnimator => m_WeaponAnimator;
+
+        private bool HasBullets => m_CurrentAmmoCount > 0;
+        private bool HasAmmo => m_TotleBullets > 0;
+
+        private bool IsLimitedAmmoStocked =>
+            m_WeaponReloadMode is WeaponReloadMode.INSTANT_RELOAD or WeaponReloadMode.COOLWDOWNBASED_RELOAD;
 
         private void Start()
         {
-            
+            ReloadWeaponInternal();
+        }
+
+        private void Update()
+        {
+            if (!m_Fire || !HasBullets) return;
+            Fire();
         }
 
         public void RegisterAimObject(AimObject aimObject)
@@ -45,19 +71,17 @@ namespace Gameplay.Weapons
 
         public void SetFiringEnabled(bool firing)
         {
+            SetFiringEnabledInternal(firing);
+        }
+
+        private void SetFiringEnabledInternal(bool firing)
+        {
             m_Fire = firing;
         }
-        
+
         public void SetWeaponShootingRate(float shootingRate)
         {
             m_WeaponShootingRate = shootingRate;
-        }
-
-        private void Update()
-        {
-            if (!m_Fire)
-                return;
-            Fire();
         }
 
         public void Fire()
@@ -71,53 +95,89 @@ namespace Gameplay.Weapons
 
         public void Fire(Action action)
         {
-            
         }
-    
+
         protected virtual void FireInternal()
         {
             m_WeaponVFXHandler.ShowMuzzleEffects();
             m_WeaponSfxHandler.ShootSound();
-        
+
+            ConsumeBullet();
+        }
+
+        private void ConsumeBullet()
+        {
+            if (m_WeaponReloadMode is WeaponReloadMode.UNLIMITED_AMMO)
+                return;
+            
             m_CurrentAmmoCount--;
-            Debug.LogError($"m_WeaponAmmoCount {m_CurrentAmmoCount}");
-            if (m_CurrentAmmoCount <= 0 && m_IsPlayer)
+            OnBulletConsumed();
+        }
+
+        private void OnBulletConsumed()
+        {
+            if (m_CurrentAmmoCount <= 0)
             {
                 SetFiringEnabled(false);
-                m_CurrentCoolDownRemainingTime = m_WeaponCoolDownDuration;
-                if (m_IsPlayer)
+
+                if (!HasAmmo && IsLimitedAmmoStocked)
                 {
-                    m_TotleBullets -= m_MagazineSize;
+                    WeaponRunOutOfAmmo();
+                    return;
                 }
-                StartCoroutine(WeaponCoolDownRoutine());
+                
+                switch (m_WeaponReloadMode)
+                {
+                    case WeaponReloadMode.INSTANT_RELOAD:
+                        ReloadWeapon(true);
+                        break;
+                    
+                    default:
+                        StartCoroutine(WeaponCoolDownRoutine(m_WeaponReloadMode is WeaponReloadMode.COOLWDOWNBASED_RELOAD));
+                        break;
+                }
             }
         }
 
-        private IEnumerator WeaponCoolDownRoutine()
+        protected virtual void WeaponRunOutOfAmmo()
         {
-            // while (m_CurrentCoolDownRemainingTime > 0)
-            // {
-            //     OnWeaponRemainingCoolDownUpdate?.Invoke(m_CurrentCoolDownRemainingTime);
-            //     yield return m_WeaponCooldownRoutineWait;
-            //
-            //     m_CurrentCoolDownRemainingTime--;
-            // }
-
-            yield return new WaitForSeconds(m_WeaponCoolDownDuration);
-
-            m_CurrentAmmoCount = m_MagazineSize;
-            SetFiringEnabled(true);
-            Debug.LogError($"m_WeaponAmmoCount {m_CurrentAmmoCount}");
-
+            
         }
-
-        public void UpdateBullet()
-        {
-            StartCoroutine(WeaponCoolDownRoutine());
-        }
-        public WeaponName WeaponName() => m_WeaponName;
         
-        public AnimatorOverrideController GetWeaponAnimator() => m_WeaponAnimator;
+        private IEnumerator WeaponCoolDownRoutine(bool shouldConsumeMagazine)
+        {
+            float currentReloadingInstant = 0;
+            
+            while (currentReloadingInstant < m_WeaponCoolDownDuration)
+            {
+                yield return m_FrameDelay;
+                currentReloadingInstant += Time.deltaTime;
+            }
+            ReloadWeapon(shouldConsumeMagazine);
+        }
+        
+        protected virtual void ReloadWeapon(bool consumeMagazine)
+        {
+            if (consumeMagazine)
+                m_TotleBullets -= m_MagazineSize;
 
+            ReloadWeaponInternal();
+            OnWeaponReloaded();
+        }
+
+        private void ReloadWeaponInternal()
+        {
+            m_CurrentAmmoCount = m_MagazineSize;
+        }
+
+        private void OnWeaponReloaded()
+        {
+            SetFiringEnabled(true);
+        }
+
+        protected void UpdateBullet()
+        {
+            StartCoroutine(WeaponCoolDownRoutine(true));
+        }
     }
 }
