@@ -6,8 +6,7 @@ public class ShieldPickUp : Collectable
 {
     public override void Collect()
     {
-        gameObject.SetActive(false);
-
+        base.Collect();
         GameEvents.GameplayEvents.GainShield.Raise(100);
     }
 
