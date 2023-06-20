@@ -9,5 +9,4 @@ public class ShieldPickUp : Collectable
         base.Collect();
         GameEvents.GameplayEvents.GainShield.Raise(100);
     }
-
 }
