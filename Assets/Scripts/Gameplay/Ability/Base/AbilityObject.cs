@@ -5,20 +5,30 @@ using UnityEngine;
 
 public abstract class AbilityObject : MonoBehaviour
 {
-    public abstract void Execute();
+    [Header("Default Properties")]
+    
+    [SerializeField] private float m_TrivialTime = 2f;
+
+    private void OnEnable()
+    {
+        Execute();
+        OnSpawn();
+    }
 
     private void OnDestroy()
     {
         Resources.UnloadUnusedAssets();
     }
-
-    public virtual void OnSpawn()
+    
+    protected abstract void Execute();
+    
+    protected virtual void OnSpawn()
     {
-        
+        DestroyAbilityObject();
     }
 
-    public virtual void DestroyAbilityObject()
+    protected virtual void DestroyAbilityObject()
     {
-        
+        Destroy(gameObject, m_TrivialTime);
     }
 }

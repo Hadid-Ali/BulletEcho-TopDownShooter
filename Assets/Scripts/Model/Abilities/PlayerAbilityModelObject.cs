@@ -12,7 +12,7 @@ public class PlayerAbilityModelObject : ScriptableObject
     [field: Header("Component Refs")]
     
     [field: SerializeField] public Sprite AbilityIcon;
-    [field: SerializeField] public AssetReferenceAbility AbilityObject { get; private set; }
+    [field: SerializeField] public AssetReferenceGameObject AbilityObject { get; private set; }
 
     [field: Header("Attributes")]
 

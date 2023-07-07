@@ -15,10 +15,9 @@ MonoBehaviour:
   <AbilityName>k__BackingField: 0
   AbilityIcon: {fileID: 21300000, guid: 0feaac20148c5704b8128bb589f4cb36, type: 3}
   <AbilityObject>k__BackingField:
-    _usage: 0
-    _value: {fileID: 0}
-    _constant: {fileID: 0}
-    _variable: {fileID: 0}
-    _variableInstancer: {fileID: 0}
+    m_AssetGUID: 8b51cd1c05a140649a4a4fa40bbd6ec3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   PowerCoolDownDuration: 0
   PowerAmmoSize: 1
