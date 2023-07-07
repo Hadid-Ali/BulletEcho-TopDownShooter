@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldForce : AbilityObject
+public class FieldForce : TimebasedAbility
 {
-    public override void OnApply()
+    public override void Execute()
     {
         
     }
