@@ -68350,6 +68350,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1566236378568096882, guid: eeb86b71c06155346a7125cab1fca607, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5191985722403011005, guid: eeb86b71c06155346a7125cab1fca607, type: 3}
       propertyPath: m_Name
       value: Gameplay UI
@@ -68397,6 +68401,10 @@ PrefabInstance:
     - target: {fileID: 5191985722403011006, guid: eeb86b71c06155346a7125cab1fca607, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5191985723095360019, guid: eeb86b71c06155346a7125cab1fca607, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
