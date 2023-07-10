@@ -179,8 +179,6 @@ public class NavigationAgent : MonoBehaviour
     {
         if (m_State is not (AgentState.Idle or AgentState.Patrolling))
             return;
-        
-        Debug.LogError("OnObjectEnter");
 
         if (trigger == "Player")
         {

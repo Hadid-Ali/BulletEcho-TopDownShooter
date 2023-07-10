@@ -16,13 +16,14 @@ public class HealthController : MonoBehaviour
     protected Action m_DamagedApplied;
     protected Action<float> m_HealthUpdate;
 
-    public bool IsAlive => m_CurrentHealth > 0;
+    private HealthStatus m_HealthStatus = HealthStatus.Normal;
+    private HealthStatus m_PreviousHealthStatus;
 
+    public bool IsAlive => m_CurrentHealth > 0;
 
     protected virtual void OnEnable()
     {
         m_CurrentHealth = m_Health;
-
     }
 
     public void Initialize(Action OnHealthDiminished, Action<float> OnHealthUpdate = null, Action OnDamage = null)
@@ -41,21 +42,21 @@ public class HealthController : MonoBehaviour
 
     public virtual void ApplyDamage(float damage)
     {
-        Debug.Log($"Current Health {m_CurrentHealth}");
-
-        Debug.Log($"Apply Damage On {gameObject} and Damage {damage}");
+        if (m_HealthStatus == HealthStatus.UnderProtection)
+            return;
 
         if (m_CurrentSheild > 0)
         {
             m_CurrentSheild -= damage;
             GameEvents.GameplayUIEvents.UpdateShieldBar.Raise(m_CurrentSheild, m_Sheild);
+
+            if (m_CurrentSheild <= 0)
+                SetHealthStatus(HealthStatus.Normal);
         }
         else
         {
             m_CurrentHealth -= damage;
         }
-
-        Debug.Log($"Apply Damage {m_CurrentHealth}");
 
         m_HealthUpdate?.Invoke(m_CurrentHealth / m_Health);
         m_DamagedApplied?.Invoke();
@@ -65,15 +66,13 @@ public class HealthController : MonoBehaviour
             Item2 = m_Health
         });
 
-
-
         if (IsAlive)
             return;
 
         OnHealthDiminish();
     }
 
-    public void AddPlayerHealth(float Health)
+    protected void AddHealth(float Health)
     {
         m_CurrentHealth += Health;
 
@@ -85,17 +84,31 @@ public class HealthController : MonoBehaviour
         });
     }
 
-    public void AddPlayerSheild(float shield)
+    protected void AddShield(float shield)
     {
         m_Sheild += shield;
         m_CurrentSheild = m_Sheild;
         GameEvents.GameplayUIEvents.UpdateShieldBar.Raise(m_CurrentSheild, m_Sheild);
+
+        SetHealthStatus(HealthStatus.Shielded);
     }
-
-
 
     protected virtual void OnHealthDiminish()
     {
         m_HealthDeminished?.Invoke();
+    }
+
+    public void SetHealthStatus(HealthStatus healthStatus)
+    {
+        if (m_HealthStatus == healthStatus)
+            return;
+
+        m_PreviousHealthStatus = m_HealthStatus;
+        m_HealthStatus = healthStatus;
+    }
+
+    public void RestoreHealthStatus()
+    {
+        m_HealthStatus = m_PreviousHealthStatus;
     }
 }

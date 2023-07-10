@@ -25,5 +25,6 @@ public abstract class TimebasedAbility : AbilityObject
             time -= Time.deltaTime;
             yield return m_FrameWait;
         }
+        DestroyAbilityObject();
     }
 }

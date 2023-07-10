@@ -32,7 +32,7 @@ public class BotLook : MonoBehaviour
         if (Physics.Raycast(m_LookPoint.position, rayDirection,
                 out RaycastHit underViewObject, m_VisionRange, m_VisionMask))
         {
-            Debug.LogError(underViewObject.transform.gameObject);
+           // Debug.LogError(underViewObject.transform.gameObject);
             return underViewObject.transform.gameObject;
         }
         return null;

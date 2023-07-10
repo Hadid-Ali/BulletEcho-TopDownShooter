@@ -9,9 +9,26 @@ public abstract class AbilityObject : MonoBehaviour
     
     [SerializeField] private float m_TrivialTime = 2f;
 
+    private Transform m_Transform;
+    
+    protected Transform Transform
+    {
+        get
+        {
+            if (m_Transform == null)
+                m_Transform = transform;
+
+            return m_Transform;
+        }
+    }
+
+    private void Awake()
+    {
+        m_Transform = transform;
+    }
+
     private void OnEnable()
     {
-        Execute();
         OnSpawn();
     }
 
@@ -19,12 +36,11 @@ public abstract class AbilityObject : MonoBehaviour
     {
         Resources.UnloadUnusedAssets();
     }
-    
-    protected abstract void Execute();
+
+    public abstract void Execute(Transform transform);
     
     protected virtual void OnSpawn()
     {
-        DestroyAbilityObject();
     }
 
     protected virtual void DestroyAbilityObject()

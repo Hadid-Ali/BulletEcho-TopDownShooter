@@ -2,10 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class PlayerAbilitiesHandler : MonoBehaviour
 {
     [SerializeField] private List<PlayerAbilityModelObject> m_Abilities = new();
+
+    private Transform m_Transform;
+
+    private void Awake()
+    {
+        m_Transform = transform;
+    }
 
     private void Start()
     {
@@ -36,12 +45,11 @@ public class PlayerAbilitiesHandler : MonoBehaviour
 
     private void ActivatePower(UIContext uiContext)
     {
-        //    m_Abilities[uiContext.ID].AbilityIcon
-        Debug.LogError(m_Abilities[uiContext.ID].AbilityName);
+        Addressables.InstantiateAsync(m_Abilities[uiContext.ID].AbilityObject).Completed += OnPowerSpawned;
     }
 
-    private void OnPowerSpawned()
+    private void OnPowerSpawned(AsyncOperationHandle<GameObject> obj)
     {
-        
+        obj.Result.GetComponent<AbilityObject>().Execute(m_Transform);
     }
 }

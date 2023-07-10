@@ -20,14 +20,4 @@ public class PlayerHealthController : HealthController
     {
         m_HealthUpdate += onHealthUpdateMethod;
     }
-
-    void AddHealth(float Health)
-    {
-        AddPlayerHealth(Health);
-    }
-
-    void AddShield(float Shield)
-    {
-        AddPlayerSheild(Shield);
-    }
 }

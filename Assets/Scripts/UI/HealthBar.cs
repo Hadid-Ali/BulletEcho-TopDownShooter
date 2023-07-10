@@ -31,7 +31,7 @@ public class HealthBar : MonoBehaviour
 
     protected virtual void UpdateHealthBar(float value)
     {
-        Debug.Log($"Value {value}");
+     //   Debug.Log($"Value {value}");
         m_HealthBarImage.fillAmount = value;
     }
 
