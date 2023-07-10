@@ -15293,6 +15293,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ' Bullet'
       objectReference: {fileID: 0}
+    - target: {fileID: 2393003496402262798, guid: c99d64cbfa784fd4db1859c2db3ce687, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3007298531990916257, guid: c99d64cbfa784fd4db1859c2db3ce687, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3819562801404813456, guid: c99d64cbfa784fd4db1859c2db3ce687, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -50014,6 +50022,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ' Bullet'
       objectReference: {fileID: 0}
+    - target: {fileID: 2393003496402262798, guid: c99d64cbfa784fd4db1859c2db3ce687, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3007298531990916257, guid: c99d64cbfa784fd4db1859c2db3ce687, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3819562801404813456, guid: c99d64cbfa784fd4db1859c2db3ce687, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -68332,6 +68348,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health
       objectReference: {fileID: 0}
+    - target: {fileID: 960377867237979124, guid: e75d3d027f3e5d24d8a989fe5e89dc43, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4972997521240884101, guid: e75d3d027f3e5d24d8a989fe5e89dc43, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -68350,10 +68374,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1566236378568096882, guid: eeb86b71c06155346a7125cab1fca607, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5191985722403011005, guid: eeb86b71c06155346a7125cab1fca607, type: 3}
       propertyPath: m_Name
       value: Gameplay UI
@@ -68401,10 +68421,6 @@ PrefabInstance:
     - target: {fileID: 5191985722403011006, guid: eeb86b71c06155346a7125cab1fca607, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5191985723095360019, guid: eeb86b71c06155346a7125cab1fca607, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -68499,6 +68515,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bullet
       objectReference: {fileID: 0}
+    - target: {fileID: 2393003496402262798, guid: c99d64cbfa784fd4db1859c2db3ce687, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3007298531990916257, guid: c99d64cbfa784fd4db1859c2db3ce687, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3819562801404813456, guid: c99d64cbfa784fd4db1859c2db3ce687, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -68560,6 +68584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield
       objectReference: {fileID: 0}
+    - target: {fileID: 4918012184989264663, guid: e759ac8d459fb3142b1e88c94962027f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7778628638713296645, guid: e759ac8d459fb3142b1e88c94962027f, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -68602,6 +68630,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7778628638713296645, guid: e759ac8d459fb3142b1e88c94962027f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8218070121075022939, guid: e759ac8d459fb3142b1e88c94962027f, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

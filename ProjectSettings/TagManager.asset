@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
+  - Red team
+  - Enemy
+  - Sound wave
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -15,9 +19,9 @@ TagManager:
   - Enemy
   - Environment
   - Player
-  - 
-  - 
-  - 
+  - EnemyRange
+  - CollectablesRange
+  - Collectable
   - 
   - 
   - 

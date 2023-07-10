@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 108441665552007822}
   - component: {fileID: 4229291998466159657}
   - component: {fileID: 6047240735092507266}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 2167491331608626660}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &250079398254666503
 MeshFilter:
@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2167491331608626660}
   - component: {fileID: 1378312638206585995}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}

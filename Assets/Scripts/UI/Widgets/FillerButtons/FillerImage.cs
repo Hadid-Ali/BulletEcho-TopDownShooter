@@ -8,7 +8,7 @@ public class FillerImage : MonoBehaviour
    [SerializeField] private Image m_FillerImage;
 
    private float m_FillDuration = 1f;
-   
+
    private GameEvent m_OnFilled = new();
    private GameEvent m_OnEmptied = new();
 
@@ -16,7 +16,7 @@ public class FillerImage : MonoBehaviour
 
    protected bool IsFilled => m_FillerImage.fillAmount >= 1;
    protected bool IsEmpty => m_FillerImage.fillAmount <= 0;
-   
+
    public void Initialize(Action onFilled, Action onEmpty, float duration)
    {
       m_FillDuration = duration;
@@ -65,7 +65,7 @@ public class FillerImage : MonoBehaviour
 
       while (value <= 1)
       {
-         value += Time.deltaTime;
+         value += Time.deltaTime / m_FillDuration;
          SetFillAmount(value);
 
          yield return m_FrameWait;

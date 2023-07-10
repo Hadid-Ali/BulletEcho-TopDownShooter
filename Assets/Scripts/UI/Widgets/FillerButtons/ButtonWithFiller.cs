@@ -4,23 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonWithFiller : MonoBehaviour
+public class ButtonWithFiller : ButtonWithContext
 {
-    [SerializeField] private Button m_ButtonComponent;
     [SerializeField] private FillerImage m_FillerImage;
-
-    private void Start()
+    
+    public override void SetContext(UIContext context)
     {
+        base.SetContext(context);
         
-    }
-
-    public void Initialize(Action onButtonPress,float fillerDuration)
-    {
-        m_ButtonComponent.onClick.AddListener(() =>
-        {
-            onButtonPress();
-        });
-        m_FillerImage.Initialize(EnableButton, DisableButton, fillerDuration);
+        m_FillerImage.Initialize(EnableButton, DisableButton, context.FillerAmount);
+        SubscribeClickInternal(() => m_FillerImage.Consume(1));
     }
 
     private void EnableButton()

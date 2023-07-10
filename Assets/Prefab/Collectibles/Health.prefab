@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3177464851474131291}
   - component: {fileID: 1563833339532263378}
   - component: {fileID: 1739797292403734324}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7356518159877453156}
   - component: {fileID: 3555093415849142060}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}

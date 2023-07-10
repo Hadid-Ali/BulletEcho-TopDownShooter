@@ -11,6 +11,6 @@ public static partial class GameEvents
         public static GameEvent<bool> InventoryStatusChangedEvent = new();
 
         public static GameEvent<float, float> UpdateShieldBar = new();
-
+        public static GameEvent<PowerButtonDataObject[]> PowersInitialized = new();
     }
 }

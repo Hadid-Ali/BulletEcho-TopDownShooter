@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5091631711785554719}
   - component: {fileID: 7668191377323014552}
   - component: {fileID: 8120098482055060647}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4918012184989264663}
-  m_LocalRotation: {x: -0, y: -0.08794352, z: -0, w: 0.99612546}
+  m_LocalRotation: {x: 0, y: -0.08794688, z: 0, w: 0.9961252}
   m_LocalPosition: {x: -0.14, y: 0, z: 2.65}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1334672375963355255}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -10.091, z: 0}
 --- !u!33 &6563308451800975626
 MeshFilter:
@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1334672375963355255}
   - component: {fileID: 7711410440842385475}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -19,5 +19,5 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  PowerCoolDownDuration: 0
+  PowerCoolDownDuration: 5
   PowerAmmoSize: 1

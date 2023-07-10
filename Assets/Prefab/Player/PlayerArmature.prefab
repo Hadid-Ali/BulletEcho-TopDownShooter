@@ -622,6 +622,100 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1355085618561527840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2023084610034411505}
+  - component: {fileID: 602802916361650068}
+  - component: {fileID: 351001420472465451}
+  - component: {fileID: 4819466327878142528}
+  m_Layer: 10
+  m_Name: ' Player Collectables Range'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2023084610034411505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355085618561527840}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.222, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8127345280083736851}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &602802916361650068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355085618561527840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c84e407a3c9139428015060e35c4441, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &351001420472465451
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355085618561527840}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!135 &4819466327878142528
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355085618561527840}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.49
+  m_Center: {x: 0, y: 0, z: 0.21}
 --- !u!1 &1505910506267288366
 GameObject:
   m_ObjectHideFlags: 0
@@ -4108,8 +4202,8 @@ GameObject:
   - component: {fileID: 2172169277823959691}
   - component: {fileID: 1391531357763505181}
   - component: {fileID: 4708693796965138709}
-  m_Layer: 2
-  m_Name: ' Player Range'
+  m_Layer: 9
+  m_Name: ' Player Enemy Range'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4920,6 +5014,7 @@ Transform:
   - {fileID: 3015266891740272003}
   - {fileID: 6340455648845707924}
   - {fileID: 7806301978222521061}
+  - {fileID: 2023084610034411505}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5150,7 +5245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646bfc81fe74c3d418e81925d1012153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerRange: {fileID: 2172169277823959691}
+  m_PlayerRange: {fileID: 602802916361650068}
 --- !u!114 &2793504715447434716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5513,7 +5608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4072730634888511346, guid: 2251c0e209fd62146b8ea81a34beae25, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.127
+      value: 0.026
       objectReference: {fileID: 0}
     - target: {fileID: 4072730634888511346, guid: 2251c0e209fd62146b8ea81a34beae25, type: 3}
       propertyPath: m_LocalPosition.y
